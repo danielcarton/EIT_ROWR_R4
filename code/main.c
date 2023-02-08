@@ -5,8 +5,8 @@
 
 //------------------------------------------------------------------------
 
-static int printf_hook(char c, FILE* file);
-static FILE avr_stdout = FDEV_SETUP_STREAM(printf_hook, NULL, _FDEV_SETUP_WRITE);
+static int print_callback(char c, FILE* file);
+static FILE avr_stdout = FDEV_SETUP_STREAM(print_callback, NULL, _FDEV_SETUP_WRITE);
 
 //------------------------------------------------------------------------
 
@@ -29,13 +29,22 @@ static void print_char(char c) {
 
 //------------------------------------------------------------------------
 
-static int printf_hook(char c, FILE* file) {
-  if (c == '\n') print_char('\r');
+static int print_callback(char c, FILE* file) {
+  if (c == '\n') 
+    print_char('\r');
+    
   print_char(c);
   return 0;
 }
 
 //------------------------------------------------------------------------
+
+static void system_init() {
+  // Set CPU frequency to 24 MHz
+  ccp_write_io((u8* )&CLKCTRL.MCLKCTRLB, 0);
+  ccp_write_io((u8* )&CLKCTRL.OSCHFCTRLA, CLKCTRL_FRQSEL_24M_gc);
+  ccp_write_io((u8* )&WDT.CTRLA, 0);
+}
 
 int main() {
   print_init();
