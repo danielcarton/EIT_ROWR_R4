@@ -15,7 +15,7 @@ FLAGS = -Wall \
 .PHONY: build install
 
 build:
-	@avr-gcc $(FLAGS) main.c -o program.elf
+	@avr-gcc $(FLAGS) main.c print.c serial.c -o program.elf
 	@avr-objcopy -j .text -j .data -j .bss -O ihex program.elf program.hex
 	@sudo pymcuprog erase -t $(PROGRAMMER) -d $(DEVICE) -i $(PROTOCOL)
 	@sudo pymcuprog write -t $(PROGRAMMER) -d $(DEVICE) -i $(PROTOCOL) --verify -f program.hex
