@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  ghost_trawler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ghost_trawler
+    privileged: true
+    volumes:
+      - ".:/ghost_trawler_ws/src/EIT_ROWR_R4"
+      # - "/dev:/dev"
+    environment:
+      DISPLAY: :0
+    stdin_open: true
+    tty: true
+    network_mode: host
+    entrypoint: ["/bin/bash", "-l"]
