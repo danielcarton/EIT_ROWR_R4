@@ -40,7 +40,7 @@ RUN pip install \
     rospkg
 
 # Copy workspace into image
-COPY ./ /ghost_trawler_ws/src
+COPY ./ /ghost_trawler_ws/src/EIT_ROWR_R4
 
 # ROS Wrapper for Mynt Eye
 RUN cd /ghost_trawler_ws/src && sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'

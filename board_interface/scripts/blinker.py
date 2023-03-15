@@ -7,7 +7,7 @@ import board as brd
 
 def callback(data, board):
     # rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
-    color = colorsys.hsv_to_rgb(data,1,1)
+    color = colorsys.hsv_to_rgb(data.data,1,1)
     test = [int(color[0] * 255), int(color[1] * 255), int(color[2] * 255)]
     board.send(test)
     
@@ -18,7 +18,7 @@ def blinker(board):
     # anonymous=True flag means that rospy will choose a unique
     # name for our 'blinker' node so that multiple blinkers can
     # run simultaneously.
-    rospy.init_node('blinker', anonymous=True)
+    rospy.init_node('blinker', anonymous=False)
 
     rospy.Subscriber("pinger", Float32, callback,board)
 
