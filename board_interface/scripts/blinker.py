@@ -6,10 +6,10 @@ import colorsys
 import board as brd
 
 def callback(data, board):
-    # rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
-    color = colorsys.hsv_to_rgb(data.data,1,1)
-    test = [int(color[0] * 255), int(color[1] * 255), int(color[2] * 255)]
-    board.send(test)
+    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+    # color = colorsys.hsv_to_rgb(data.data,1,1)
+    # test = [int(color[0] * 255), int(color[1] * 255), int(color[2] * 255)]
+    # board.send(test)
     
 def blinker(board):
 
@@ -26,6 +26,9 @@ def blinker(board):
     rospy.spin()
 
 if __name__ == '__main__':
-    board = brd.Board()
-    board.init('/dev/ttyACM0')
-    blinker(board)
+    try:
+        board = brd.Board()
+        board.init('/dev/ttyACM0')
+        blinker(board)
+    except rospy.ROSInterruptException:
+        pass

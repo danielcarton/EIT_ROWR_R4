@@ -33,7 +33,8 @@ RUN apt update && \
     python3-vcstool \
     net-tools \     
     tcpdump \
-    python-pip
+    python-pip \
+    software-properties-common
 
 RUN pip install \
     pyserial \
@@ -43,9 +44,12 @@ RUN pip install \
 COPY ./ /ghost_trawler_ws/src/EIT_ROWR_R4
 
 # ROS Wrapper for Mynt Eye
-RUN cd /ghost_trawler_ws/src && sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-RUN sudo apt update
+# RUN cd /ghost_trawler_ws/src && sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+# RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+# RUN sudo apt update
+RUN sudo add-apt-repository ppa:slightech/mynt-eye-s-sdk
+RUN sudo apt-get update
+RUN sudo apt-get install mynt-eye-s-sdk
 
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 RUN source ~/.bashrc
