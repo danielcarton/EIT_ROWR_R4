@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #include <stdarg.h>
 
+#include "perlin.h"
+
 static double ipart(double x) {
   return (double)(int)x;
 }
@@ -139,9 +141,11 @@ static void line(double angle, int k) {
 
 static void floo() {
   #define N 30
+  static float xpos = 0; 
   static int count = 0;
   static int heights[N];
 
+    xpos += 0.0001; 
   int height, width;
   terminal_get_size(&width, &height);
 
@@ -150,7 +154,7 @@ static void floo() {
       heights[i] = heights[i + 1];
     }
 
-    heights[N - 1] = rand() % 10;
+    heights[N - 1] = (perlin(xpos, 0)*0.5+0.5)*10;
   }
 
   for (int i = 0; i < N; i++) {
@@ -163,6 +167,7 @@ static void floo() {
 
 int main() {
   terminal_init();
+  float xpos = 0;
 
   while (1) {
     for (double i = -M_PI / 2; i < M_PI / 2; i += 0.01) {
