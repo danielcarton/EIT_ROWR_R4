@@ -161,13 +161,6 @@ static void floo() {
   }
 }
 
-static void test() {
-  float x[3][3] = {
-    {1, 0, 0}, 
-    {0, cos}
-  };
-}
-
 int main() {
   terminal_init();
 
@@ -180,8 +173,6 @@ int main() {
       for (long long j = 0; j < 5000000; j++) __asm__("nop");
     }
   }
-
-
 
 
   cursor(0, 100);
