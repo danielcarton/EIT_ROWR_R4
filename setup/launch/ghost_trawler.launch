@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+      <rosparam command="load" file="$(find drone_setup)/config/ghost_trawler.yaml"/>
+
+      <include file="$(find mynt_eye_ros_wrapper)/launch/mynteye.launch" />
+      <node pkg="motion" type="altitude_controller.py" name="altitude_controller"/>
+      <node pkg="motion" type="servo_interface.py" name="servo_interface"/>
+</launch>

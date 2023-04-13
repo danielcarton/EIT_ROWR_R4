@@ -13,10 +13,10 @@ class Board():
     print('Using port:', self.port.name)
 
   def send(self, data):
-    data = struct.pack('B3B', self.COMMAND_SEND_DATA, *data)
-    for i in range(len(data)):
-      assert(0 <= data[i] and data[i] <= 180):
-      data[i] = 255 * data[i] / 180
+    # data = struct.pack('B3B', self.COMMAND_SEND_DATA, *data)
+    # for i in range(len(data)):
+    #   assert (0 <= data[i] and data[i] <= 180)
+    #   data[i] = 255 * data[i] / 180
     self.port.write(struct.pack('B3B', self.COMMAND_SEND_DATA, *data))
 
   def read(self):
