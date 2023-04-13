@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(board_interface)
+project(motion)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,7 +7,11 @@ project(board_interface)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -159,6 +163,9 @@ catkin_install_python(PROGRAMS
   scripts/board.py
   scripts/blinker.py
   scripts/pinger.py
+  scripts/talker.py
+  scripts/servo_interface.py
+  scripts/altitude_controller.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

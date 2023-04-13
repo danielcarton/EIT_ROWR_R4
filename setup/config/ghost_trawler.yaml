@@ -1,0 +1,8 @@
+controllers:
+  altitude_controller:
+    kp: 0.1
+    ki: 0.001
+    kd: 0.001
+    r: 3
+    min_angle: -40
+    max_angle: 40

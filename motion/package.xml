@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>board_interface</name>
+  <name>motion</name>
   <version>0.0.0</version>
   <description>Tools for interfacing with the PCB</description>
   <maintainer email="viktor.enaas@gmail.com">root</maintainer>
