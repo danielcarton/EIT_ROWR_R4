@@ -165,6 +165,8 @@ catkin_install_python(PROGRAMS
   scripts/pinger.py
   scripts/talker.py
   scripts/servo_interface.py
+  scripts/servo_client.py
+  scripts/servo_server.py
   scripts/altitude_controller.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
